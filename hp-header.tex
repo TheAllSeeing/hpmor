@@ -3,17 +3,16 @@
 % THIS DOCUMENT REQUIRES XeLaTeX TO COMPILE!
 
 \usepackage{lettrine}		% Used for the fancy caps at the start of each chapter
-\usepackage{xspace}		    % Takes care of spaces after macros
+\usepackage{xspace}		% Takes care of spaces after macros
 \usepackage{amsmath}		% Provides the align environment, used in chapter 13 for the notes
-\usepackage[protrusion=basictext]{microtype}
                             % Makes right margin neater by letting certain punctuation protrude slightly
+\usepackage[protrusion=basictext]{microtype}
 \usepackage{fontspec}		% For the many fonts
 \usepackage{xunicode}       % Probably needed for something
 \usepackage{xstring}        % Needed for something
 \usepackage{censor}         % Used in "Time Pressure" to redact Hermione's name
 \usepackage{pgffor}         % Foreach loop to build chapters
-                            % Used for the build timestamp in the colophon
-
+\usepackage[normalem]{ulem} % Underline for final exam and strikethrough in Omake III Alladin/Jasmine
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},
 	pdftitle={Harry Potter and the \hpBookTitle},
 	pdfauthor={LessWrong}, breaklinks={true},
@@ -77,6 +76,7 @@
 % Draws three “magic stars”, used as a decoration everywhere
 \newcommand*{\Stars}{{\Large\Star\kern-.6ex\lower1.1ex\hbox{\Large\Star}%
     \kern-.1ex\raise.1ex\hbox{\small\Star}\spacefactor1000}}
+
 
 %
 % Section break with three spaced stars
@@ -242,6 +242,8 @@
 %
 % Style definitions and hacks
 %
+
+
 % In the text, em dashes are encoded explicitly
 % and the ellipsis is encoded with {\el}
 \newcommand*{\el}{\,.\,.\,.} % Ellipsis definition
@@ -249,8 +251,8 @@
 % Logical formatting macros
 \newcommand*{\parsel}[1]{\textit{#1}} % Parseltongue
 \newcommand*{\prophecy}[1]{\textbf{\textit{\textsc{#1}}}} % Prophecies
-\newcommand*{\headline}[1]{\begin{center}\textsc{#1}\end{center}} % Newspaper headlines
-\newcommand*{\inlineheadline}[1]{\textsc{#1}} % Newspaper headlines inline with text
+\newcommand*{\headline}[1]{\begin{center}\textsc{#1}\end{center}} % Newspaper headlin Used for start of book 5
+\newcommand*{\inlineheadline}[1]{\textsc{#1}} % Newspaper headlines inline with text.
 
 \newcommand{\chalkboard}[1]{ % chalkboard font, used in Chapter 15 for \"Transfiguration is Not Permanant"`
     {
