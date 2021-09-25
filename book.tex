@@ -1,0 +1,34 @@
+
+%% FUNCTIONS %%
+\input{hp-header}
+
+%% HEADER %%
+\begin{document}
+
+{
+    \pagestyle{empty}
+    \pagenumbering{gobble}
+
+    \cleartorecto
+
+    \input{hp-titlepage}
+    \input{hp-contents}
+}
+
+%% BODY %%
+\pagenumbering{arabic}
+\setcounter{page}{0}
+
+\foreach \i in \hpBookChapters {%
+    \include{\chapterOf{\i}}
+}
+
+
+%% FOOTER %%
+{
+    \pagestyle{empty}
+    \cleartoverso%
+    \include{hp-thanks}
+}
+
+\end{document}

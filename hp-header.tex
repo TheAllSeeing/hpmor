@@ -11,7 +11,7 @@
 \usepackage{xunicode}       % Probably needed for something
 \usepackage{xstring}        % Needed for something
 \usepackage{censor}         % Used in "Time Pressure" to redact Hermione's name
-\usepackage[useregional]{datetime2}
+\usepackage{pgffor}         % Foreach loop to build chapters
                             % Used for the build timestamp in the colophon
 
 \usepackage[bookmarks=true,unicode=true,pdfborder={0 0 0},
@@ -39,6 +39,14 @@
 \setheadfoot{\topskip + \baselineskip}{2\baselineskip}
 \checkandfixthelayout[fixed]
 \fixdvipslayout % fix for xelatex
+
+
+\def\chapterOf#1{
+    chapters/hpmor-chapter-%
+    \ifnum#1<100 0\fi % 0-pad 1-99
+    \ifnum#1<10 0\fi % Additional 0-pad 1-9
+    #1
+}
 
 %
 % Font setup: URW Garamond No. 8

@@ -1,44 +1,11 @@
-\input{hp-header}
 
-\begin{document}
-{
-\pagestyle{empty}
 
+%% Set Parameters %%
 \newcommand{\hpBookNo}{1}
 \newcommand{\hpBookChar}{Harry James Potter-{\kern 2pt}Evans-{\kern 4pt}Verres}
 \newcommand{\hpBookTitle}{Methods of Rationality}
-\newcommand{\hpBookChapters}{Chapters 1--21}
-\newcommand{\hpBookOther}{}
-    \newcommand{\hpBookLogo}{Sorting_Hat.png}
-\input{hp-titlepage}
+\newcommand{\hpBookLogo}{Covers/Book1/SortingHat.png}
+\newcommand{\hpBookChapters}{1, ..., 21}
 
-\pagenumbering{gobble}
-\input{hp-contents}
-\cleartorecto
-}
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
-\include{chapters/hpmor-chapter-001}
-\include{chapters/hpmor-chapter-002}
-\include{chapters/hpmor-chapter-003}
-\include{chapters/hpmor-chapter-004}
-\include{chapters/hpmor-chapter-005}
-\include{chapters/hpmor-chapter-006}
-\include{chapters/hpmor-chapter-007}
-\include{chapters/hpmor-chapter-008}
-\include{chapters/hpmor-chapter-009}
-\include{chapters/hpmor-chapter-010}
-\include{chapters/hpmor-chapter-012}
-\include{chapters/hpmor-chapter-013}
-\include{chapters/hpmor-chapter-014}
-\include{chapters/hpmor-chapter-015}
-\include{chapters/hpmor-chapter-016}
-\include{chapters/hpmor-chapter-017}
-\include{chapters/hpmor-chapter-018}
-\include{chapters/hpmor-chapter-019}
-\include{chapters/hpmor-chapter-020}
-\include{chapters/hpmor-chapter-021}
-
-\include{hp-colophon}
-\end{document}
+%% Write Book %%
+\input{book}
