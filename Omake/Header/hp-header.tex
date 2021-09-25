@@ -1,0 +1,64 @@
+% THIS DOCUMENT REQUIRES XeLaTeX TO COMPILE!
+
+
+%% Uses overall style of main books
+\input{Header/hp-header}
+
+
+\usepackage{xcolor}       % Provides \NUMBERstringnum
+
+%% Redefine Chapter Style %%
+\makechapterstyle{omakeevans}{%
+	\renewcommand*{\chapnamefont}{\hpchap\normalsize}
+	\renewcommand*{\chapnumfont}{\chapnamefont\normalsize}
+	\renewcommand*{\chaptitlefont}{\hp\large}
+	
+	\setlength{\beforechapskip}{0pt}
+	\setlength{\midchapskip}{0pt}
+	\setlength{\afterchapskip}{1\baselineskip}
+	
+	\renewcommand*{\printchapternum}{% " O M A K E   F I L E  IV"
+	  \begin{center} \chapnumfont \hyperref[contents]{OMAKE FILE \Roman{chapter}}\end{center}
+    }
+
+	\renewcommand*{\printchaptername}{} % I don't want the number and name in seperate lines so  it's already defined above
+	
+	\renewcommand*{\printchaptertitle}[1]{% "THE OTHER FANFICTIONS YOU COULD HAVE BEEN READING"
+		\vskip 1cm \begin{center}\chaptitlefont \MakeUppercase{##1}\end{center}\par \vskip 1cm}
+	
+	\renewcommand*{\chaptermark}[1]{% "OMAKE FILE IV" and "THE OTHER FANFICTIONS>.."
+		\markboth{\MakeUppercase{##1}}{%
+		  \MakeUppercase{\chaptername}~\protect\NUMBERstringnum{\thechapter}}}
+
+	\renewcommand*{\tocmark}{\markboth{}{\MakeUppercase{Contents}}}
+	
+	\renewcommand{\tocheadstart}{\chapterheadstart}
+	\renewcommand{\aftertoctitle}{\thispagestyle{empty}\afterchaptertitle}
+}
+
+\chapterstyle{omakeevans} % Actually implements the above chapter style code
+
+\renewcommand\chaptername{FILE}
+\renewcommand\chaptermarksn[1]{}
+
+\renewcommand\chaptermark[1]{%
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{File \Roman{chapter}}}
+}
+
+
+%% Style definitions and hacks %%
+
+% Logical formatting macros
+\newcommand{\shout}[1]{{\scshape #1}} % from Omake II song
+
+\newcommand{\auTitle}[3]{% # OMAKE III (Title box + font for parallel fics)
+    {
+        \fontspec[ExternalLocation, Path=Omake/Fonts/]{#1}
+        \noindent\hfill
+        \scalebox{#3}{#2}
+        \hfill\mbox{}%
+        \vskip 1\baselineskip plus 1\baselineskip
+    }
+}
+
+
