@@ -1,0 +1,28 @@
+% Book list as in the original novels
+
+
+\begin{center}
+\vspace*{2.0cm}
+{
+	\newcounter{BooksListCounter}
+	\def \hpBook #1{
+		\addtocounter{BooksListCounter}{1}
+		\ifnum\value{BooksListCounter}=\hpBookNo%
+			\textbf{\textit{Book \arabic{BooksListCounter}: Harry James Potter-Evans-Verres and the #1}}
+		\else
+			\textit{Book \arabic{BooksListCounter}: Harry James Potter-Evans-Verres and the #1}
+		\fi
+		\vspace{0.25cm}
+
+		\smallskip\par
+	}
+
+	\hpBook{Letter from Hogwarts}
+	\hpBook{Legion of Chaos}
+	\hpBook{Shadows of Death}
+	\hpBook{Call of the Phoenix}
+	\hpBook{Last Enemy}
+	\hpBook{Philosopher's Stone}
+}
+\end{center}
+
