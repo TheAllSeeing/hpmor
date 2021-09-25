@@ -1,0 +1,30 @@
+
+\newcommand{\hpBookNo}{7} %% Book Num requires for booklist
+\newcommand{\hpBookTitle}{OMAKE FILES} %% For Hyperref metadata
+\newcommand{\hpBookLogo}{Covers/Book1/SortingHat.png}
+
+
+\input{Omake/Header/hp-header}
+\begin{document}
+
+{
+    \pagestyle{empty}
+    \pagenumbering{gobble}
+    \input{Omake/Header/hp-titlepage}
+    \input{Omake/Header/hp-contents}
+}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\include{Omake/hpmor-omake-I}
+\include{Omake/hpmor-omake-II}
+\include{Omake/hpmor-omake-III}
+\include{Omake/hpmor-omake-IV}
+\include{Omake/hp-exam}
+\include{Omake/hp-epigraphs}
+
+\include{Footer/hp-thanks}
+\include{Footer/hp-booklist}
+
+\end{document}
