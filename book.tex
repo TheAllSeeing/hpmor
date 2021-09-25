@@ -1,6 +1,6 @@
 
 %% FUNCTIONS %%
-\input{hp-header}
+\input{Header/hp-header}
 
 %% HEADER %%
 \begin{document}
@@ -11,8 +11,8 @@
 
     \cleartorecto
 
-    \input{hp-titlepage}
-    \input{hp-contents}
+    \input{Header/hp-titlepage}
+    \input{Header/hp-contents}
 }
 
 %% BODY %%
@@ -28,7 +28,8 @@
 {
     \pagestyle{empty}
     \cleartoverso%
-    \include{hp-thanks}
+    \include{Footer/hp-thanks}
+    \include{Footer/hp-booklist}
 }
 
 \end{document}
