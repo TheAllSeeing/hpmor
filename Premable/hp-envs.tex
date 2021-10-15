@@ -1,0 +1,196 @@
+
+                                %%%%%%%%%%%%%%%%%%%%%%%%%%
+                                %%     DEPENDANCIES     %%
+                                %%  - hp-spacing.tex    %%
+                                %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                              PREFACE: LOGICAL FORMATTING & LATEX                              %%
+%%                                                                                               %%
+%%  We often like to indicate a specific type of text (quote, headline, shout, etc.) with        %%
+%%  typographical changes to it. Instead of formatting each individual case of such text, LaTeX  %%
+%%  allows us to mark lines as a certain type of text, and then define the formatting for        %%
+%%  that type elsewhere -- so if we used capitalization to indicate a character is shouting,     %%
+%%  but then we decide we actually want to mark it with boldface, we could simply change the     %%
+%%  line that defined \shout and it would change all instances of shouting immediately.          %%
+%%                                                                                               %%
+%%  This file includes, then, all the definitions of the logical formatting used in the book;    %%
+%%  parseltoungue, prophecy, headlines, letters, thoughts, chalkboard and inscription.           %%
+%%                                                                                               %%
+%%  This file is divided into two sections: inline commands, and enviornments, based on the      %%
+%%  LaTeX feature they utilize.                                                                  %%
+%%                                                                                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                        INLINE COMMANDS                                      %%
+%%                                                                                             %%
+%% The commands defined below can be used inline on a short section of text to format it based %%
+%% on the type of text it represents (e.g headline, prophect, etc.).                           %%
+%%                                                                                             %%
+%% For example:                                                                                %%
+%% This text is normal, but \parsel{thiss text isss in parseltoungue}. This text is normal     %%
+%% again.                                                                                      %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\secondemph}[1]{\textbf{#1}} % Alternative emphasis (replaces some original       %%
+                                          % capslock formatting)                               %%
+                                                                                               %%
+\newcommand*{\doubleemph}[1]{% Parseltongue (Italicized)                                       %%
+  \emph{\secondemph{\microtypecontext{kerning=pemph}#1}}                                       %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand*{\houseverdict}[1]{% Parseltongue (Italicized)                                     %%
+  \MakeUppercase{#1}                                                                           %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand*{\shout}[1]{% Parseltongue (Italicized)                                            %%
+  \textit{#1}                                                                                  %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand*{\parsel}[1]{% Parseltongue (Italicized)                                           %%
+  \textit{#1}                                                                                  %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand*{\prophecy}[1]{% Prophecies (Italicized, bold and capitalized)                     %%
+  \textbf{\textit{\textsc{#1}}}%                                                               %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand*{\headline}[1]{% Newspaper headline Used for start of book 5                       %%
+  \centerline\textsc{#1}% Capitalized and centered                                             %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand*{\inlineheadline}[1]{% Newspaper headlines inline with text. (Capitalized)         %%
+  \textsc{#1}%                                                                                 %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand{\letterAddress}[1]{% Letter Address, for use with writtenNote enviornment below.   %%
+  \pagebreak[1]    % It's nice to page break here (though not a must -- that's the meaning     %%
+                   % of the optional argument).                                                %%
+  \noindent        % Don't indent                                                              %%
+  #1               % Write the adress                                                          %%
+  \nopagebreak\par % Stick the adress to the rest of the letter.                               %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand{\letterClosing}[2]% Letter Address, for use with writtenNote enviornment below.    %%
+           [\vskip 1\baselineskip]{                                                            %%
+  \nopagebreak[4] % Make sure it sticks to the letter above                                    %%
+  #1\par          % Write the closing with an appended newline                                 %%
+  \nopagebreak[5] % Maje su                                                                    %%
+  \noindent#2                                                                                  %%
+}                                                                                              %%
+                                                                                               %%
+\newcommand{\chalkboard}[1]{ % chalkboard, used in Chapter 15 for "Transfiguration is Not      %%
+                             % Permanant"`                                                     %%
+    \SmallVSpace%                                                                              %%
+    \centerline\Large\MakeUppercase{#1}                                                        %%
+    \SmallVSpace%                                                                              %%
+}                                                                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                        ENVIRONMENTS                                         %%
+%%                                                                                             %%
+%% The enviornments defined below can be used to indicate a block of text represents some type %%
+%% of speech or text (e.g letter, thought) and format it apropriately; here the details of the %%
+%% formatting is defined.                                                                      %%
+%%                                                                                             %%
+%% Enviornments are a TeX feature that allows delinating a block of text with \begin{env} and  %%
+%% \end{env) to change their formatting, De facto, both \begin{env} and \end{env} are replaced %%
+%% with text and commands defined together with the enviornment 'env'                          %%
+%%                                                                                             %%
+%% The command \newenvironment used below to define enviornments is quite simple; the first    %%
+%% argument is the eviornment name, the second argument replaces each instance of its \begin   %%
+%% and the third argument replaces each instance of its \end                                   %%
+%%                                                                                             %%
+%% Example Usage:                                                                              %%
+%%                                                                                             %%
+%% Not a thought                                                                               %%
+%% \begin{thought}                                                                             %%
+%% This is some thoughtful text                                                                %%
+%% this is a thought, too                                                                      %%
+%% \end{thought}                                                                               %%
+%% This is no longer a thought                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                                                                               %%
+                                                                                               %%
+\NewEnviron{upperCase}{\MakeUppercase{\BODY}}                                                  %%
+                                                                                               %%
+                                                                                               %%
+\newenvironment{writtenNote}{ % Makes a written note in italics (first used, Hogwarts          %%
+                              % acceptance letter)                                             %%
+    \SomeVSpace       % Open with vertical space in line with grid                             %%
+    \begin{adjustwidth}{\parindent}{\parindent} % Increases left/right margins symmetrically   %%
+                                                % by the new paragraph indent length           %%
+    \begin{em}        % Emphasis                                                               %%
+        \par\noindent % newline without indentation                                            %%
+        \nopagebreak[4]                                                                        %%
+}{%                                                                                            %%
+    \end{em}          % end emphasis                                                           %%
+    \end{adjustwidth} % End margins change                                                     %%
+    \SomeVSpace       % CLosr with vertical space in line with grid                            %%
+}                                                                                              %%
+                                                                                               %%
+%% NOTE here:                                                                                  %%
+%% In the original text                                                                        %%
+\newenvironment{gameNote}{ % Notes for "The Game" from Ch13. Centered, Capitalized,            %%
+                           % WrittenNote style defined above.                                  %%
+    \begin{center}                                                                             %%
+    \scshape                                                                                   %%
+    \setlength{\parindent}{0pt}                                                                %%
+    \setlength{\parskip}{1em}                                                                  %%
+    \begin{adjustwidth}{\parindent}{\parindent} % Increases left/right margins symmetrically   %%
+    \renewcommand{\emph}[1]{\uline{##1}}
+    \nopagebreak[1] % Discourage pagebreaks before game note starts
+}{
+
+    \end{adjustwidth} % End margins change                                                     %%
+    \end{center}
+    \SomeVSpace       % Open with vertical space in line with grid                             %%
+}                                                                                              %%
+
+\newenvironment{gameNoteText}{}{} % Currently note text is not formatted
+
+\newenvironment{gameNotePoints}{ % Notes for "The Game" from Ch13. Centered, Capitalized,      %%
+    \smallskip                                                                                 %%
+    \newcolumntype{U}{>{\collectcell\titlecap}r<{\endcollectcell}} % Right-aligned titlecaps   %%
+    \begin{tabular}[b]{U@{: }l} % First column is titlecaps-right-aligned (see above) and ends %%
+                                % with a colon. Second column is left aligned.                 %%
+}{                                                                                             %%
+    \end{tabular}                                                                              %%
+}                                                                                              %%
+                                                                                               %%
+\newenvironment{onTheHeritability}{% For the CH22 "Paper"                                      %%
+    \begin{writtenNote}
+        \begin{center}
+            \setlength{\parskip}{1\gridsmallvskip}
+}{
+        \end{center}
+    \end{writtenNote}
+}
+                                                                                               %%
+                                                                                               %%
+\newenvironment{thought}[1]  % Format a "thought" paragraph: vertical space around, consistent %%
+                             % and controllable indent                                         %%
+               [\parindent]{ % Optionl argument for thought indent                             %%
+    \SmallVSpace   % vertical space, also terminates previous paragraph                        %%
+    \hangindent=#1 % apply indent given in optional argument                                   %%
+    \hangafter=0   % apply indent from the first line                                          %%
+    \parindent=0pt % disable extra indent for first line                                       %%
+}{%                                                                                            %%
+    \SmallVSpace% vertical space, also terminates paragraph                                    %%
+}                                                                                              %%
+                                                                                               %%
+% Makes an inscription in small caps (first used, Gringotts)                                   %%
+\newenvironment{inscription}{%\parindent=1cm%                                                  %%
+    \SomeVSpace%                                                                               %%
+	\begin{adjustwidth}{4\parindent}{\parindent}                                               %%
+    \scshape                                                                                   %%
+}{%                                                                                            %%
+    \end{adjustwidth}                                                                          %%
+    \SomeVSpace%                                                                               %%
+}                                                                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

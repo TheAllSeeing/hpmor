@@ -1,0 +1,60 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                                             %%
+%%                                   PRELIMINARY: MARKS                                        %%
+%%                                                                                             %%
+%%    The Memoir class separates its headers and footers into two definitions: Marks and       %%
+%%    Style.. _Marks_ delinate the contents of the contents of the header and footer, and      %%
+%%    _Styles_ define the content's formatting. For example, the chapter mark may simply be    %%
+%%    its title, and the style could be its font and the separator line below it.              %%
+%%                                                                                             %%
+%%    The memoir class allows setting different marks on even and odd pages (right/left),      %%
+%%    which this documet uses.                                                                 %%
+%%                                                                                             %%
+%%    In general, both the style and the marks are defined as part of a "Page Style" which     %%
+%%    can be created or configured (see below), ans set with \setpagestyle or                  %%
+%%    \setthispagestyle.                                                                       %%
+%%                                                                                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                       HEADER STYLE                                          %%
+%%                                                                                             %%
+%% \makeevenhead and \makeoddhead allow defining header style on even and odd pages,           %%
+%% in a given page style. Each takes four arguments; the first for the page style to           %%
+%% configure and the other three for left. center and right aligned objects on the header.     %%
+%%                                                                                             %%
+%% The style defined here goes something like so:                                              %%
+%% - Left side header: chapter number                                                          %%
+%% - Right side header: chapter name                                                           %%
+%% - decorative stars in corners                                                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeevenhead{headings} % Even heads on "headings" style                                       %%
+	{\Stars} % Left: Decorarive stars (Defined in macros file)                                 %%
+	{\hp\hyperref[contents]{\small\rightmark}} % Center: right mark in lumos font and small    %%
+                                               % size, hyperlinking to contents page.          %%
+	{\reflectbox{\Stars}} % Right: Decorative stars (defined in macros file)                   %%
+                                                                                               %%
+\makeoddhead{headings} % Even heads on "headings" style                                        %%
+	{\Stars} % Left: Decorarive stars (Defined in macros file)                                 %%
+	{\hp\hyperref[contents]{\small\leftmark}} % Center: right mark in lumos font and small     %%
+                                               % size, hyperlinking to contents page.          %%
+	{\reflectbox{\Stars}} % Right: Decorative stars (defined in macros file)                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                       FOOTER STYLE                                          %%
+%%                                                                                             %%
+%% \makeevenhead and \makeoddhead allow defining footer style on even and odd pages,           %%
+%% in a given page style. Each takes four arguments; the first for the page style to           %%
+%% configure and the other three for left. center and right aligned objects on the footer.     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pageNum}{{\small\Star\ \makebox[2em][c]{\thepage\,}\Star}} % Page number macro -  %%
+                                                                        % centered between two %%
+                                                                        % small stars in footer%%
+\makeevenfoot{headings}{}{\pageNum}{} % Implement on odd pages                                 %%
+\makeoddfoot{headings}{}{\pageNum}{}  % Imolement on even pages                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

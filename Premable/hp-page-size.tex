@@ -1,0 +1,24 @@
+
+
+%% Page Sizw
+\setstocksize{9in}{6in}
+\settrimmedsize{\stockheight}{\stockwidth}{*}
+
+
+
+
+
+%% Margins
+
+\settypeblocksize{7.34in}{4.31in}{*}
+
+\ifnum\hpBookType=0 % If type is ebook
+    \setlrmargins{*}{*}{0.9999999999} % actual alue of 1 seems to break it
+\else % If type is print
+    \setlrmargins{*}{*}{0.65}
+\fi
+
+\setulmargins{*}{*}{0.8}
+\setheadfoot{\topskip + \baselineskip}{2\baselineskip}
+\checkandfixthelayout[fixed]
+%% \fixdvipslayout % fix for xelatex

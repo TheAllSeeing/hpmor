@@ -1,0 +1,42 @@
+
+
+%
+% Font setup: URW Garamond No. 8
+%
+\setmainfont[
+, Ligatures={Common,TeX}
+, UprightFont=*-Regular
+, ItalicFont=*-Italic
+, BoldFont=*-Medium
+, BoldItalicFont=*-Medium-Italic
+, Path=Fonts/
+]{GaramondNo8}
+
+
+%
+% Chapters, headings, etc.: Lumos (extra spacing looks much better)
+\newfontface\hp[ExternalLocation, Path=Fonts/, LetterSpace=18.0, WordSpace=1.5]{Lumos}
+\newcommand{\lumos}[1]{{\hp\MakeUppercase{#1}}}
+% Chapter numbers: Lumos (extreme spacing for effect)
+\newfontface\hpchap[ExternalLocation, Path=Fonts/, LetterSpace=80.0, WordSpace=2.0]{Lumos}
+%
+% Font used to draw the magic star
+\newfontface\starfont[ExternalLocation, Path=Fonts/]{Miscelanea.ttf}
+
+%
+% Lettrine font pick and configuration
+%
+\renewcommand{\LettrineFontHook}{\hp} % Uses Lumos for the large letter
+\renewcommand{\LettrineTextFont}{} % Normal font for the rest of the first word
+% For when the first word is in italics, use this command instead
+\newcommand{\lettrinemph}[3][]{\lettrine[#1]{#2}{\emph{#3}}}
+\setcounter{DefaultLines}{1}
+% Large cap instead of drop cap because of many short first lines
+\renewcommand{\DefaultLoversize}{0}
+\renewcommand{\DefaultLraise}{0}
+
+%% These words will be ignored by \titlecap
+\Resetlcwords
+\Addlcwords{for a is but and with of in as the etc on to if}
+
+\MakeOuterQuote{"}

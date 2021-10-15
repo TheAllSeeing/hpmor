@@ -1,0 +1,103 @@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                      GRID                                                   %%
+%%                                                                                             %%
+%% Define vertical spaces between .5 and 1.5 lines to keep text on a grid as much as possible. %%
+%% (these spaces are typically used before and after a list, note etc. Using                   %%
+%% twice .5 lines or twice 1.5 lines means we get back to grid typesetting after               %%
+%% the second space.)                                                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\gridvskip}                                                                         %%
+\setlength{\gridvskip}{1\baselineskip}                                                         %%
+\newlength{\gridsmallvskip}                                                                    %%
+\setlength{\gridsmallvskip}{.5\baselineskip}                                                   %%
+\newcommand*{\SomeVSpace}{\vskip \gridvskip\relax}                                             %%
+\newcommand*{\SmallVSpace}{\vskip \gridsmallvskip\relax}                                       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                      SENTENCE SPACING                                       %%
+%%                                                                                             %%
+%% Configure spaces after periods and elipsis                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\ellipsisgap}{.16667em}                                                          %%
+\newcommand{\ellipsisgapitalic}{.115em} % Gap must be reduced for italic (to be used manually) %%
+\frenchspacing % Single space after a period (also avoids having to take care of spacing after %%
+               % abbreviations)                                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                        LINE SPACING                                         %%
+%%                                                                                             %%
+%% Configure spaces between line                                                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\linespread{1.17} % Wider line spacing looks much better                                       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                      LIST SPACING                                           %%
+%%                                                                                             %%
+%% Remove extra space around lists and between items. It looks better and helps                %%
+%% typesetting on the grid. This command must come first, or it would overwrite                %%
+%% some of the other changes below.                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tightlists*                                                                                   %%
+\setlength{\topsep}{\gridvskip} % Set space before and after lists and center environments     %%
+\setlength{\partopsep}{0pt} % Set additional space added to lists that start a new paragraph.  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                     TABLE SPACING                                           %%
+%%                                                                                             %%
+%% The tabular environment results in some vertical space missing after the tabular,           %%
+%% allow TeX to fill it with some stretchable glue                                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\let\Oldendtabular\endtabular                                                                  %%
+\def\endtabular{\Oldendtabular\vskip0pt plus .1\baselineskip\relax}                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                      TEXT FLOW                                              %%
+%%                                                                                             %%
+%% Sometimes a "physical" break of the text (i.e page and line breaks) can disrupt the         %%
+%% flow of the text; for example, the last line of paragraph can end up being on a new         %%
+%% page, or when a linebreak occures mid word.                                                 %%
+%%                                                                                             %%
+%% LaTeX automatically adjusts (To an extent) margins and spacing in order to avoid            %%
+%% such breaks. The below lines configure the behaviour of these automatic adjustments.        %%
+%%                                                                                             %%
+%% See also: Widows and Orphans, Hyphenation                                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clubpenalty=80 % Mildly discourages first line of paragraph on previous page                  %%
+\widowpenalty=9000 % Avoids last line of paragraph on next page                                %%
+\brokenpenalty=2000 % Avoids hyphenation across a page break                                   %%
+\hyphenpenalty=60 % Penalty for automatic hyphenation                                          %%
+\exhyphenpenalty=75 % Penalty for breaking after a dash or explicit hyphen                     %%
+\adjdemerits=80000 % Penalty for visually incompatible lines                                   %%
+\doublehyphendemerits=70000 % Avoids hyphenation on consecutive lines                          %%
+\hbadness=4000 % When compiling, only reports underfull lines if badness>4000                  %%
+                                                                                               %%
+\raggedbottom%     % Better to have consistent line spacing than vertically justified text     %%
+                                                                                               %%
+\setlength{\emergencystretch}{.04\textwidth} % If a paragraph cannot be typeset without        %%
+                                             % overfull boxes, try adding some                 %%
+                                             % stretchable glue in each line                   %%
+                                                                                               %%
+\hyphenation{Her-mi-o-ne Gran-ger bru-shes Gryf-fin-dor Gryf-fin-dors                          %%
+Le-strange some-where which-ev-er Hog-warts re-pli-cat-ed ran-dom                              %%
+sta-tis-ti-cal Wi-zen-gam-ot an-aly-se an-aly-sis re-mem-ber Mc-Gon-a-gall                     %%
+Vol-de-mort Le-strange Gil-deroy Scour-gify Alo-ho-mora Mun-dun-gus Hogs-meade                 %%
+Nym-pha-dora Ver-i-ta-serum Tre-lawney Az-ka-ban Poly-juice Sirius basi-lisk                   %%
+Phi-neas McKin-non Filius Quiri-nus Love-good whom-ever Dum-ble-dore thou-sand                 %%
+Huf-fle-puff Huf-fle-puffs Slyther-in Slyther-ins Har-ry Flit-wick win-gar-di-um               %%
+le-viosa Dra-co Tre-lawney Sev-erus Mal-foy fun-da-men-tal} % Hypenation Corrections           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

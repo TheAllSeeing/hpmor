@@ -1,0 +1,29 @@
+
+\usepackage{lettrine}		% Used for the fancy caps at the start of each chapter
+\usepackage{amsmath}		% Provides the align environment, used in chapter 13 for the notes
+\usepackage[protrusion=basictext]{microtype}
+                            % Makes right margin neater by letting certain punctuation protrude slightly
+\usepackage{fontspec}		% For the many fonts (see fonts.tex)
+\usepackage{censor}         % For redacted name in chapter 89
+\usepackage{xstring}        % Needed for \IfInteger...
+\usepackage{xcolor}         % Provides color options to hyperref in Header/thanks.tex
+\usepackage{array}
+\usepackage{collcell}
+\usepackage[bookmarks=true, unicode=true,
+            pdfborder={0 0 0}, breaklinks={true},
+            pdfencoding=auto
+]{hyperref}                 % Provides hyperlinks, bookmarks and metadata in PDF
+
+\usepackage{ellipsis}       % Stylizes \dots (see \el in macros.tex). Must be loaded after fontspec and hyperref.
+\usepackage[style=english]{csquotes}
+                            % Provides MakeOuterQuote to easy editing
+\usepackage{pgffor}         % Provides \foreach loop to build chapters
+
+\usepackage{titlecaps}
+
+\usepackage{fmtcount}       % Provides \NUMBERstringnum for chapter headings
+\usepackage{graphicx}       % Provides \reflectbox in header
+\usepackage[normalem]{ulem} % Provides Underline (\uline) for final exam and strikethrough (\sout) in Omake III Alladin/Jasmine
+\usepackage{luacode}        % Privides luacode env used to get type (ebook/print) command line arg (see type.tex)
+\usepackage{pdfpages}       % Provides \includepdf for adding ebook covers (see book.tex)
+\usepackage{environ}        % Allowes referencing to enviornment body, which allows capitalization enviornment

@@ -1,0 +1,92 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                    CHAPTER PATH GENERATOR                                   %%
+%%                                                                                             %%
+%% Generates the path to a chapter file                                                        %%
+%% Param #1 - chapter number                                                                   %%
+%% Returns - the path to that chapter's file                                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\chapterOf[1]{ % paths are  Chapters/hpmor-chapter-xxx                              %%
+    Chapters/hpmor-chapter-%                                                                   %%
+    \ifnum#1<100 0\fi % 0-pad 1-99                                                             %%
+    \ifnum#1<10 0\fi % Additional 0-pad 1-9                                                    %%
+    #1                                                                                         %%
+}                                                                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                       STAR GLYPH                                            %%
+%%                                                                                             %%
+%% Draws a “magic star”, used as a decoration                                                  %%
+%% Returns - A stylized "star" (in fact an asterisj in a special font)                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\Star}{{\starfont{}*}} % \starfont defined in fonts.tex                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                  STAR TRIPLET GLYPH                                         %%
+%%                                                                                             %%
+%% Draws three “magic stars”, used as a decoration in the running head                         %%
+%% Returns - A box of three stylized stars (see \Star)                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Stars}{                                                                           %%
+    {                                                                                          %%
+        \Large\Star% Type star                                                                 %%
+        \kern-.6ex \lower1.1ex% some space and lower text                                      %%
+        \hbox{\Large\Star}%  Type another star (as above, it will be lower)                    %%
+        \kern-.1ex\raise.1ex%  Type another star                                               %%
+        \hbox{\small\Star}%                                                                    %%
+        \spacefactor1000                                                                       %%
+    }                                                                                          %%
+}                                                                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                  STAR SECTION BREAK                                         %%
+%%                                                                                             %%
+%% Draws a section break of three equal-spaced “magic stars”                                   %%
+%% Returns - A box of three equally spaced stylized stars (see \Star), sorrounded by grid      %%
+%% vertical space.                                                                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\sbreak}{%                                                                         %%
+    \par                                                                                       %%
+    \SomeVSpace%                                                                               %%
+    \begin{center}                                                                             %%
+        \raisebox{-.5ex}{                                                                      %%
+            \Star\qquad\Star\qquad\Star%                                                       %%
+        }%                                                                                     %%
+    \end{center}                                                                               %%
+    \SomeVSpace%                                                                               %%
+    \par\noindent%                                                                             %%
+}                                                                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%
+% Macros for time of day. Using '/' suffix to avoid eating a following space.
+\def\AM/{{\,\scshape am}} % AM in small caps
+\def\PM/{{\,\scshape pm}} % PM in small caps
+
+
+% Macro to convert a number to uppercase Roman
+\makeatletter % Allow usage of advanced @ functions
+\newcommand*{\RomNum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+
+% In the text, the ellipsis is encoded with \el, which we define here to \dots
+% preceded by the same amount of space as used between the dots (see the
+% ellipsis package configuration in deps.tex). Note that the ellpsis package is
+% necessary for \dots to generate three spaced dots when compiling with
+% lualatex or xelatex (otherwise one gets a single glyph of 3 packed dots). We
+% use \dots instead of \ldots because of a buggy interaction with the amsmath
+% package.
+\newcommand*{\el}{\leavevmode \kern\ellipsisgap \dots} % Ellipsis definition
+%
