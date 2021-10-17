@@ -447,10 +447,15 @@ silver snake.
 \emph{Þregen béon Pefearles suna and þrie hira
 tól þissum Déað béo gewunen.}
 
-Three shall be Peverell's sons and three their devices by which Death shall be
-defeated.
 
----Spoken in the presence of the three Peverell brothers,\\
+\ifnum\hpBookType=0 % On ebook preventing mbox will stretch byond margin as neccessary
+    \makebox[\textwidth]{Three shall be Peverell's sons and three their devices by which Death shall be
+    defeated.}
+\else % On print stretching beyond margins may be dangerous (and some text may not actually be printed), so I just linebreak at a good spot
+    Three shall be Peverell's sons \\
+    and three their devices by which Death shall be defeated
+\fi
+---Spoken in the presence of the three Peverell brothers,
 in a small tavern on the outskirts of what would later be called Godric's
 Hollow.
 \end{center}
