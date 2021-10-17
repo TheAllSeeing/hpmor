@@ -9,6 +9,10 @@
     \pagestyle{empty}
     \pagenumbering{gobble}
 
+    \ifnum\hpBookType=0
+        \includepdf[pages=-, fitpaper=true]{Covers/Book\hpBookNo/Front.pdf}
+    \fi
+
     \cleartorecto%
 
     \ifnum\hpBookNo=1
@@ -34,6 +38,11 @@
     \cleartoverso%
     \include{Footer/hp-thanks}
     \include{Footer/hp-booklist}
+
+
+    \ifnum\hpBookType=0
+        \includepdf[pages=-, fitpaper=true]{Covers/Book\hpBookNo/Back.pdf}
+    \fi
 }
 
 \end{document}
