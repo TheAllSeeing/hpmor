@@ -39,16 +39,16 @@
 \newcommand*{\secondemph}[1]{\textbf{#1}} % Alternative emphasis (replaces some original       %%
                                           % capslock formatting)                               %%
                                                                                                %%
-\newcommand*{\doubleemph}[1]{% Parseltongue (Italicized)                                       %%
+\newcommand*{\doubleemph}[1]{% Normal and secondary emphasis                                   %%
   \emph{\secondemph{\microtypecontext{kerning=pemph}#1}}                                       %%
 }                                                                                              %%
                                                                                                %%
-\newcommand*{\houseverdict}[1]{% Parseltongue (Italicized)                                     %%
+\newcommand*{\houseverdict}[1]{% Sorting hat shouting house (e.g "RAVENCLAW")                  %%
   \MakeUppercase{#1}                                                                           %%
 }                                                                                              %%
                                                                                                %%
-\newcommand*{\shout}[1]{% Parseltongue (Italicized)                                            %%
-  \textit{#1}                                                                                  %%
+\newcommand*{\shout}[1]{% Characters shouting                                                  %%
+  \MakeUpperCase{#1}                                                                           %%
 }                                                                                              %%
                                                                                                %%
 \newcommand*{\parsel}[1]{% Parseltongue (Italicized)                                           %%
@@ -62,6 +62,8 @@
 \newcommand{\cantvoice}[1]{} % For CH89 when Harry is so captured by terror he cannot even     %%
                              % bring himself to mentally voice Hermione's name. Most PDF       %%
                              % versions put a censor bar instead of completley omitting it.    %%
+                                                                                               %%
+\newcommand{\headline}[1]{\centerline\textsc{#1}}                                              %%
                                                                                                %%
                                                                                                %%
 \newcommand*{\inlineheadline}[1]{% Newspaper headlines inline with text. (Capitalized)         %%
@@ -144,18 +146,24 @@
     \setlength{\parindent}{0pt}                                                                %%
     \setlength{\parskip}{1em}                                                                  %%
     \begin{adjustwidth}{\parindent}{\parindent} % Increases left/right margins symmetrically   %%
-    \renewcommand{\emph}[1]{\uline{##1}}
-    \nopagebreak[1] % Discourage pagebreaks before game note starts
-}{
-
+    \renewcommand{\emph}[1]{\uline{##1}}                                                       %%
+    \nopagebreak[1] % Discourage pagebreaks before game note starts                            %%
+}{                                                                                             %%
+                                                                                               %%
     \end{adjustwidth} % End margins change                                                     %%
-    \end{center}
+    \end{center}                                                                               %%
     \SomeVSpace       % Open with vertical space in line with grid                             %%
 }                                                                                              %%
-
-\newenvironment{gameNoteText}{}{} % Currently note text is not formatted
-
-\newenvironment{gameNotePoints}{ % Notes for "The Game" from Ch13. Centered, Capitalized,      %%
+                                                                                               %%
+%% Tabulars interacted badly with the uppercase enviornment and some wrapping envs in          %%
+%% general, and you may want to format the note's text differently from its point tables,      %%
+%% So there are separate envs for additional formatting for the notes' text and point tables.  %%
+                                                                                               %%
+\newenvironment{gameNoteText}{}{} % Currently note text is not formatted, but                  %%
+                                  % You can change this env to tweak that (e.g in the          %%
+                                  % original text it's formatted uppercase                     %%
+                                                                                               %%
+\newenvironment{gameNotePoints}{ % Point tablws for "The Game" notes from Ch13.                %%
     \smallskip                                                                                 %%
     \newcolumntype{U}{>{\collectcell\titlecap}r<{\endcollectcell}} % Right-aligned titlecaps   %%
     \begin{tabular}[b]{U@{: }l} % First column is titlecaps-right-aligned (see above) and ends %%
@@ -165,13 +173,13 @@
 }                                                                                              %%
                                                                                                %%
 \newenvironment{onTheHeritability}{% For the CH22 "Paper"                                      %%
-    \begin{writtenNote}
-        \begin{center}
-            \setlength{\parskip}{1\gridsmallvskip}
-}{
-        \end{center}
-    \end{writtenNote}
-}
+    \begin{writtenNote}                                                                        %%
+        \begin{center}                                                                         %%
+            \setlength{\parskip}{1\gridsmallvskip}                                             %%
+}{                                                                                             %%
+        \end{center}                                                                           %%
+    \end{writtenNote}                                                                          %%
+}                                                                                              %%
                                                                                                %%
                                                                                                %%
 \newenvironment{thought}[1]  % Format a "thought" paragraph: vertical space around, consistent %%
