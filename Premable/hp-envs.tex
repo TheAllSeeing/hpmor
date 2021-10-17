@@ -185,12 +185,17 @@
     \SmallVSpace% vertical space, also terminates paragraph                                    %%
 }                                                                                              %%
                                                                                                %%
-% Makes an inscription in small caps (first used, Gringotts)                                   %%
-\newenvironment{inscription}{%\parindent=1cm%                                                  %%
+\newenvironment{headlines}{%\parindent=1cm%                                                    %%
     \SomeVSpace%                                                                               %%
 	\begin{adjustwidth}{4\parindent}{\parindent}                                               %%
-    \scshape                                                                                   %%
+        \begin{Spacing}{0.95}                                                                  %%
+            \begin{center}                                                                     %%
+                \renewcommand{\headline}[1]{\textsc{##1}\vfill}                                %%
+                \setlength{\parindent}{0pt}                                                    %%
+                \setlength{\parskip}{1em}                                                      %%
 }{%                                                                                            %%
+            \end{center}                                                                       %%
+        \end{Spacing}                                                                          %%
     \end{adjustwidth}                                                                          %%
     \SomeVSpace%                                                                               %%
 }                                                                                              %%
