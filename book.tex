@@ -11,7 +11,7 @@
     \pagenumbering{gobble}
 
     \ifnum\hpBookType=0
-        \includepdf[pages=-, fitpaper=true]{Covers/Book\hpBookNo/Front.pdf}
+        \includepdf[pages=-, height=\paperheight, noautoscale=true]{Covers/Book\hpBookNo/Front.pdf}
     \fi
 
     \cleartorecto%
@@ -27,7 +27,7 @@
 %% BODY %%
 \mainmatter%
 \pagenumbering{arabic}
-\setcounter{page}{0}
+\setcounter{page}{1}
 
 \foreach \i in \hpBookChapters {%
     \include{\chapterOf{\i}}
@@ -44,7 +44,7 @@
 
 
     \ifnum\hpBookType=0
-        \includepdf[pages=-, fitpaper=true]{Covers/Book\hpBookNo/Back.pdf}
+        \includepdf[pages=-, height=\paperheight, noautoscale=true]{Covers/Book\hpBookNo/Back.pdf}
     \fi
 }
 
