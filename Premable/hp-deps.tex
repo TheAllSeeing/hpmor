@@ -7,20 +7,17 @@
 \usepackage{censor}         % For redacted name in chapter 89
 \usepackage{xstring}        % Needed for \IfInteger...
 \usepackage{xcolor}         % Provides color options to hyperref in Header/thanks.tex
-\usepackage{array}
-\usepackage{collcell}
+\usepackage{array}          % Allows formatting table columns, for the game point tabke in CH13
+\usepackage{collcell}       % Allows refering to cell content in custom column format, for the game point tabke in CH13
 \usepackage[bookmarks=true, unicode=true,
             pdfborder={0 0 0}, breaklinks={true},
             pdfencoding=auto
 ]{hyperref}                 % Provides hyperlinks, bookmarks and metadata in PDF
-
 \usepackage{ellipsis}       % Stylizes \dots (see \el in macros.tex). Must be loaded after fontspec and hyperref.
 \usepackage[style=english]{csquotes}
                             % Provides MakeOuterQuote to easy editing
 \usepackage{pgffor}         % Provides \foreach loop to build chapters
-
-\usepackage{titlecaps}
-
+\usepackage{titlecaps}      % Provides \titlecaps for CH13 Game point tables
 \usepackage{fmtcount}       % Provides \NUMBERstringnum for chapter headings
 \usepackage{graphicx}       % Provides \reflectbox in header
 \usepackage[normalem]{ulem} % Provides Underline (\uline) for final exam and strikethrough (\sout) in Omake III Alladin/Jasmine
