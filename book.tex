@@ -36,11 +36,13 @@
 %% FOOTER %%
 \backmatter
 {
+    \appendix
+    \include{Footer/hp-chapternums}
+
     \pagestyle{empty}
     \cleartoverso%
     \include{Footer/hp-thanks}
     \include{Footer/hp-booklist}
-
 
     \ifnum\hpBookType=0
         \includepdf[pages=-, height=\paperheight, noautoscale=true]{Covers/Book\hpBookNo/Back.pdf}

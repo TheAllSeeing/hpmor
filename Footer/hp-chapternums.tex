@@ -1,0 +1,25 @@
+\chapter*{Appendix A: \\ Chapter Numbers as posted}
+
+\emph{Harry Potter and the Methods of Rationality} was originally released
+as serial fiction on the site \url{fanfiction.net}. It might be of interest to
+you to locate these original postings, which may include extra content such as author's notes
+and epigraphs, not included in this book; In conjunction with the original postings you might be
+interested in the online discussions of particular chapters across social media. For this
+reason, the table below includes the simple conversion of the chapter numbers in this book to their
+original serial counterparts.
+
+
+\begin{center}
+    \begin{tabular}{c|c|l}%
+        Book \# & Posting \# & Name \\%
+        \hline%
+        \newcommand*\ChapterTable{}%
+        \foreach \i in \hpBookChapters{%
+            \ifnum\i=11 \else \ifnum\i=64 \else
+                \xappto\ChapterTable{\ChapterNum{\i} & \i & \ChapterName{\i}}%
+                \gappto\ChapterTable{\\ \hline}%
+            \fi\fi
+        }%
+        \ChapterTable
+    \end{tabular}
+\end{center}
