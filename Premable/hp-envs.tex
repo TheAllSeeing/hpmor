@@ -129,8 +129,9 @@
     \begin{adjustwidth}{\parindent}{\parindent} % Increases left/right margins symmetrically   %%
                                                 % by the new paragraph indent length           %%
     \begin{em}        % Emphasis                                                               %%
-        \par\noindent % newline without indentation                                            %%
         \nopagebreak[4]                                                                        %%
+        \parindent=0pt                                                                         %%
+        \parskip=1em                                                                           %%
 }{%                                                                                            %%
     \end{em}          % end emphasis                                                           %%
     \end{adjustwidth} % End margins change                                                     %%
@@ -193,7 +194,7 @@
     \SmallVSpace% vertical space, also terminates paragraph                                    %%
 }                                                                                              %%
                                                                                                %%
-\newenvironment{headlines}{%\parindent=1cm%                                                    %%
+\newenvironment{headlines}{%                                                                   %%
     \SomeVSpace%                                                                               %%
 	\begin{adjustwidth}{4\parindent}{\parindent}                                               %%
         \begin{Spacing}{0.95}                                                                  %%
