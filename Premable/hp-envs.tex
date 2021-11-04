@@ -137,9 +137,19 @@
     \end{adjustwidth} % End margins change                                                     %%
     \SomeVSpace       % CLosr with vertical space in line with grid                            %%
 }                                                                                              %%
-                                                                                               %%
-%% NOTE here:                                                                                  %%
-%% In the original text                                                                        %%
+
+\newenvironment{scienceProjectSteps}{ % Hermione reciting the steps of the scientific
+                                      % method in CH8
+    \begin{center}
+        \begin{em}
+            \begin{tabular}[t]{r@{: }l} % Center the column border, append
+                                        % colon to left column text
+}{
+            \end{tabular}
+        \end{em}
+    \end{center}
+}
+
 \newenvironment{gameNote}{ % Notes for "The Game" from Ch13. Centered, Capitalized,            %%
                            % WrittenNote style defined above.                                  %%
     \begin{center}                                                                             %%
