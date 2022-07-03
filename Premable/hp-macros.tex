@@ -69,6 +69,40 @@
 
 
 
+
+\newcommand{\auTitleBox}[2]{% # OMAKE III (Title box + font for parallel fics)
+    \noindent
+    \begin{center}
+        \scalebox{#2}{#1}
+    \end{center}
+    \nopagebreak
+}
+
+
+\newcommand{\auTextTitle}[3]{
+    {
+        \fontspec[ExternalLocation, Path=Omake/Fonts/]{#1}
+        \auTitleBox{#2}{#3}
+    }
+}
+
+\newcommand{\auImageTitle}[3]{
+    \auTitleBox{
+        \includegraphics[width=#2\linewidth]{Omake/Images/#1}
+    }{#3}
+}
+
+\newcommand\uuuline{\bgroup\markoverwith%
+{%
+    \rule[-0.5ex]{2pt}{0.4pt}%
+    \llap{\rule[-0.7ex]{2pt}{0.4pt}}%
+    \llap{\rule[-0.9ex]{2pt}{0.4pt}}%
+}%
+\ULon}
+
+\newcommand{\SystemError}{SYSTEM ERROR} % "SYSTEM ERROR" formatting from CH81
+
+
 %
 % Macros for time of day. Using '/' suffix to avoid eating a following space.
 \def\AM/{{\,\scshape am}} % AM in small caps
