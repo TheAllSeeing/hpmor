@@ -1,4 +1,4 @@
-\chapter*{Appendix A: \\ Chapter Numbers as posted}
+\chapter{Chapter Numbers as posted}
 
 \emph{Harry Potter and the Methods of Rationality} was originally released
 as serial fiction on the site \url{fanfiction.net}. It might be of interest to
@@ -9,17 +9,16 @@ reason, the table below includes the simple conversion of the chapter numbers in
 original serial counterparts.
 
 
-\begin{center}
-    \begin{tabular}{c|c|l}%
-        Book \# & Posting \# & Name \\%
-        \hline%
-        \newcommand*\ChapterTable{}%
-        \foreach \i in \hpBookChapters{%
-            \ifnum\i=11 \else \ifnum\i=64 \else
-                \xappto\ChapterTable{\ChapterNum{\i} & \i & \ChapterName{\i}}%
-                \gappto\ChapterTable{\\ \hline}%
-            \fi\fi
-        }%
-        \ChapterTable
-    \end{tabular}
-\end{center}
+\begin{longtable}{c|c|l}%
+    Book \# & Posting \# & Name \\%
+    \hline%
+    \endhead% all the lines above this will be repeated on every page
+    \newcommand*\ChapterTable{}%
+    \foreach \i in \hpBookChapters{%
+        \ifnum\i=11 \else \ifnum\i=64 \else
+            \xappto\ChapterTable{\ChapterNum{\i} & \i & \ChapterName{\i}}%
+            \gappto\ChapterTable{\\ \hline}%
+        \fi\fi
+    }%
+    \ChapterTable
+\end{longtable}
