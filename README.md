@@ -121,35 +121,39 @@ also containing some
   lualatex Volumes/hpmor-1.tex print # Generates print PDF for book 1
   ```
 
-### Proofread and Copyedited
+### Proofread and Copy-edited
   * American English (no britpicks)
   * Many typos fixed
   * Phrasing is sometimes edited to make more sense
   * Some small misquotes fixed
-  * Careful kerning, linebreaking
-  * Standartized date/time formats
+  * Careful kerning & line-breaking to improve text flow
+  * Standardized date/time formats
   * Consistent capitalization of various words
-  * Standartized and improved the way typography is used
+  * Standardized and improved the way typography is used
   to communicate meaning (e.g headline, parseltounge, shouting, etc.)
-  * Removed some excessive use of caps lock and replaced it with italics or boldface when apropriate.
+  * Consistent usage of italics for emphasis and bold for extra emphasis (removing usages of caps lock for both)
+  * Reduced some redundant usage of caps lock in general
+  * Italicized quotation marks of fully italicized quotations
 
 ### Made to be customized
+  * The LaTeX code which generated the PDF is available at this repository
+  and is thoroughly documented and organized. 
 
-* The LaTeX code which generated the PDF is available at this repository
-and is thouroughly documented and organized. 
+  * Each book is generated based on a book template and a number of parameters
+  that can be easily set by the user  
 
-* Each book is generated based on a book template and a number of parameters
-that can be easily set by the user  
+  * The PSDs which were used to generate the covers are also available, 
+  and include many alternative designs in hidden layers (maintaining the 
+  same overall style), which are showcased in the wiki.
 
-* The PSDs which were used to generate the covers are also available, 
-and include many alternative designs in hidden layers (maintaining the 
-same overall style).
+  * Each directory has its own README file detailing its purpose, 
+  so one can easily understand the structure if they wish to fork the repo.
 
-* Each directory has its own README file detailing its purpose, 
-so one can easily understand the structure if they wish to fork the repo.
-
-* The GitHub wiki contains detailed articles as to how to customi
+  * The GitHub wiki contains detailed articles as to how to customize 
+  both the content and the covers
+  
 ### A grand _Sources_ submodule
+  * Includes 
 
 ## Compared to Other Versions
 
@@ -158,41 +162,39 @@ so one can easily understand the structure if they wish to fork the repo.
 
 ## TODO
 
+- Wiki pages: 
+  - Tweaking Contents
+  - Tweaking Covers
+  - Alternative Cover Designs
+  - Developing LaTeX (Code Structure)
+  - Developing PSD (What features were used)
+  - Blurb Printing
+  - Note about caps lock formatting
+- Dir READMEs
+  - Chapters
+  - Covers
+  - Docs
+  - EBooks
+  - Extras
+  - Fonts
+  - Footer
+  - Header
+  - Omake
+  - Preamble
+  - Print
+  - Volumes
+- README file -- sources section
+- Sources
+  - Add my own repo as submdule
+  - Add README
+  - Add Repo READMEs
+    - ForeChin99
+    - IlCensore
+    - dewwwey
+    - knuesel
+    - rdesteney
+- Preamble Documentation
+- Remove hp prefix from all the files
 - Consistent quotations inside macros in general
-- Refactor uses of \emph that don't communicate inflection into appropriate macros
-- Re-review uses of \shout and \mentalscream and reduce them into emphasis when not strong enough.
-
-
-## Xenohedron
-The source for this version was originally duplicated from <http://github.com/rjl20/hpmor/master>.
-Since then, it has been greatly reworked, with various improvements and stylistic changes.
-
-Features:
-* Includes an edited version of _Daystar's Remix of Rationality_
-    - Improves the flow and tone of chapters 1-4.
-* Formatted in the style of the American editions of canon Harry Potter
-    - Text set in 11-point URW Garamond No. 8, chapter headings set in Lumos
-    - Large initial capitals at the start of each chapter with lettrine
-* Spellcheck and standardization
-    - Fixed some typos
-    - Removed early Britpicks for consistent usage throughout
-    - Removed Omake files and epigraphs
-    - Standardization of formats for dates and times
-    - Consistent capitalization of various words
-    - Minor improvements to italics, lists, notes, and headlines
-* LaTeX formatting code restructured, pruned, and somewhat commented
-    - Individual .tex files for each chapter
-    - Formatting and macros in common header
-    - Batch file to compile in full
-* Outputs six PDF files for printing the story in six volumes
-    - Page size 9 in. by 6 in.
-    - Bookmarks and unobtrusive links with hyperref
-    - Automatic chapter numbering restarts in each subbook with ToC
-* Careful typography
-    - Microtype protrusion
-    - Adjusted line spacing
-    - Nonbreaking spaces and hyphenation
-    - Em dash and ellipsis
-    - Wider kerning in Lumos
-    - Manual linebreaks in long chapter titles
-    - Fancy headers, footers, and section breaks
+- Refactor uses of \emph that don't communicate inflection into 
+appropriate macros
