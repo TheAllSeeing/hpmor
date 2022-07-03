@@ -1,0 +1,7 @@
+\directlua{
+    dofile("Premable/thanks-macros.lua")
+    book_num = \hpBookNo
+    set_macro_by_book_num(FRONT_ART_CHANGED_BOOKS, book_num, "FrontArtChanged")
+    set_macro_by_book_num(BACK_ART_CHANGED_BOOKS, book_num, "BackArtChanged")
+    set_macro_by_book_num(QUOTE_CHANGED_BOOKS, book_num, "QuoteChanged")
+}
