@@ -14,12 +14,11 @@
         \includepdf[pages=-, height=\paperheight, noautoscale=true]{Covers/Book\hpBookNo/Front.pdf}
     \fi
 
-    \cleartorecto%
 
     \ifnum\hpBookNo=1
         \input{Header/hp-synopsis}
     \fi
-
+    \cleartorecto
     \input{Header/hp-titlepage}
     \input{Header/hp-contents}
 }
