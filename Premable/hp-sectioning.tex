@@ -35,6 +35,35 @@
 \chapterstyle{evans}% Actually implements the above chapter style code
 
 
+\makechapterstyle{omake}{%
+	\renewcommand*{\chapnamefont}{\hpchap\normalsize}
+	\renewcommand*{\chapnumfont}{\chapnamefont\normalsize}
+	\renewcommand*{\chaptitlefont}{\hp\large}
+
+	\setlength{\beforechapskip}{0pt}
+	\setlength{\midchapskip}{0pt}
+	\setlength{\afterchapskip}{1\baselineskip}
+
+	\renewcommand*{\printchapternum}{% " O M A K E   F I L E  IV"
+		\begin{center} \chapnumfont \hyperref[contents]{OMAKE FILE \Roman{chapter}}\end{center}
+	}
+
+	\renewcommand*{\printchaptername}{} % I don't want the number and name in seperate lines so  it's already defined above
+
+	\renewcommand*{\printchaptertitle}[1]{% "THE OTHER FANFICTIONS YOU COULD HAVE BEEN READING"
+		\vskip 1cm \begin{center}\chaptitlefont \MakeUppercase{##1}\end{center}\par \vskip 1cm}
+
+	\renewcommand*{\chaptermark}[1]{% "OMAKE FILE IV" and "THE OTHER FANFICTIONS>.."
+		\markboth{\MakeUppercase{##1}}{%
+			\MakeUppercase{\chaptername}~\protect\NUMBERstringnum{\thechapter}}}
+
+	\renewcommand*{\tocmark}{\markboth{}{\MakeUppercase{Contents}}}
+
+	\renewcommand{\tocheadstart}{\chapterheadstart}
+	\renewcommand{\aftertoctitle}{\thispagestyle{empty}\afterchaptertitle}
+}
+
+
 \newcommand*{\hpmorchapbreak}{\linebreak} % Allows the break to be disabled in TOC
 
 \newcommand{\wrapchapter}[2]{
@@ -95,6 +124,4 @@
 % Subsection
 %
 \setsubsecheadstyle{\bfseries\scshape} % Subsection titles in small caps
-\beforesubsecskip=1.5\baselineskip % skip before the heading
-\aftersubsecskip=.5\baselineskip plus .5\baselineskip % skip after the heading
 \setsubsechook{\nopagebreak\vskip 0pt plus 3\baselineskip}
