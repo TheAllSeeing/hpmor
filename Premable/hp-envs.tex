@@ -14,7 +14,7 @@
 %%  allows us to mark lines as a certain type of text, and then define the formatting for        %%
 %%  that type elsewhere -- so if we used capitalization to indicate a character is shouting,     %%
 %%  but then we decide we actually want to mark it with boldface, we could simply change the     %%
-%%  line that defined \shout and it would change all instances of shouting immediately.          %%
+%%  line that defines \shout and it would change all instances of shouting immediately.          %%
 %%                                                                                               %%
 %%  This file includes, then, all the definitions of the logical formatting used in the book;    %%
 %%  parseltoungue, prophecy, headlines, letters, thoughts, chalkboard and inscription.           %%
@@ -33,8 +33,8 @@
 %% on the type of text it represents (e.g headline, prophect, etc.).                           %%
 %%                                                                                             %%
 %% For example:                                                                                %%
-%% This text is normal, but \parsel{thiss text isss in parseltoungue}. This text is normal     %%
-%% again.                                                                                      %%
+%% This text is normal, but \parseltounge{thiss text isss in parseltoungue}. This text is      %%
+%% normal again.                                                                               %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand*{\secondemph}[1]{\textbf{#1}} % Alternative emphasis (replaces some original       %%
                                           % capslock formatting)                               %%
@@ -51,7 +51,7 @@
   \MakeUppercase{#1}                                                                           %%
 }                                                                                              %%
                                                                                                %%
-\newcommand*{\parsel}[1]{% Parseltongue (Italicized)                                           %%
+\newcommand*{\parseltounge}[1]{% Parseltongue (Italicized)                                     %%
   \textit{#1}                                                                                  %%
 }                                                                                              %%
                                                                                                %%
@@ -82,7 +82,6 @@
            [\vskip 1\baselineskip]{                                                            %%
   \nopagebreak[4] % Make sure it sticks to the letter above                                    %%
   #1\par          % Write the closing with an appended newline                                 %%
-  \nopagebreak[5] % Maje su                                                                    %%
   \noindent#2                                                                                  %%
 }                                                                                              %%
                                                                                                %%
@@ -92,6 +91,8 @@
     \centerline\Large\MakeUppercase{#1}                                                        %%
     \SmallVSpace%                                                                              %%
 }                                                                                              %%
+                                                                                               %%
+\newcommand{\protestSign}[1]{\MakeUppercase{#1}}                                               %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,22 +121,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                                                                %%
                                                                                                %%
-\NewEnviron{upperCase}{\MakeUppercase{\BODY}}                                                  %%
-                                                                                               %%
-                                                                                               %%
+\NewEnviron{upperCase}{\MakeUppercase{\BODY}} % Uppercase everything inside                    %%
+
+\newenvironment{narrow}{ % Narrower margins
+    \begin{adjustwidth}{\parindent}{\parindent} % Increases left/right margins symmetrically   %%
+    % by the new paragraph indent length           %%
+}{
+    \end{adjustwidth} % End margins change                                                     %%
+}
+
+\newenvironment{parsepskip}{ % Seperate paragraphs by vspace, not indent
+    \parindent=0pt                                                                         %%
+    \parskip=1em                                                                           %%
+}{}
+%%
 \newenvironment{writtenNote}{ % Makes a written note in italics (first used, Hogwarts          %%
                               % acceptance letter)                                             %%
     \SomeVSpace       % Open with vertical space in line with grid                             %%
-    \begin{adjustwidth}{\parindent}{\parindent} % Increases left/right margins symmetrically   %%
-                                                % by the new paragraph indent length           %%
-    \begin{em}        % Emphasis                                                               %%
+    \begin{narrow}    % Narrower margins
+    \begin{em}        % Emphasis
+    \begin{parsepskip}%%
+        \renewcommand{\emph}[1]{\uline{##1}}                                                   %%
+        \renewcommand{\secondemph}[1]{\MakeUppercase{##1}}                                     %%
         \nopagebreak[4]                                                                        %%
-        \parindent=0pt                                                                         %%
-        \parskip=1em                                                                           %%
-}{%                                                                                            %%
+}{%
+    \end{parsepskip}
     \end{em}          % end emphasis                                                           %%
-    \end{adjustwidth} % End margins change                                                     %%
-    \SomeVSpace       % CLosr with vertical space in line with grid                            %%
+    \end{narrow}
+    \SomeVSpace       % Close with vertical space in line with grid                            %%
 }                                                                                              %%
 
 \newenvironment{scienceProjectSteps}{ % Hermione reciting the steps of the scientific
@@ -153,15 +166,15 @@
 \newenvironment{gameNote}{ % Notes for "The Game" from Ch13. Centered, Capitalized,            %%
                            % WrittenNote style defined above.                                  %%
     \begin{center}                                                                             %%
+    \begin{parsepskip}
+    \begin{narrow} % Narrow margins                                                            %%
     \scshape                                                                                   %%
-    \setlength{\parindent}{0pt}                                                                %%
-    \setlength{\parskip}{1em}                                                                  %%
-    \begin{adjustwidth}{\parindent}{\parindent} % Increases left/right margins symmetrically   %%
     \renewcommand{\emph}[1]{\uline{##1}}                                                       %%
     \nopagebreak[1] % Discourage pagebreaks before game note starts                            %%
 }{                                                                                             %%
                                                                                                %%
-    \end{adjustwidth} % End margins change                                                     %%
+    \end{narrow} % End margins change                                                     %%
+    \end{parsepskip}
     \end{center}                                                                               %%
     \SomeVSpace       % Open with vertical space in line with grid                             %%
 }                                                                                              %%
@@ -199,23 +212,94 @@
     \SmallVSpace   % vertical space, also terminates previous paragraph                        %%
     \hangindent=#1 % apply indent given in optional argument                                   %%
     \hangafter=0   % apply indent from the first line                                          %%
-    \parindent=0pt % disable extra indent for first line                                       %%
-}{%                                                                                            %%
+    \begin{parsepskip}
+}{%
+    \end{parsepskip}                                                                           %%
     \SmallVSpace% vertical space, also terminates paragraph                                    %%
 }                                                                                              %%
-                                                                                               %%
+
+\newenvironment{memory}{
+    \begin{em}
+        \begin{narrow}
+}{
+        \end{narrow}
+    \end{em}
+}
+
+\newenvironment{inscription}{ % Inscription on the sign in Ch96, also used
+                              % for gravestone env below.
+    \begin{center}
+    \scshape
+}{
+    \end{center}
+}
+
+\newenvironment{gravestone}{ % Lily & James' potter gravestones from Ch96. In the original it's also uppercased
+    \begin{inscription}
+}{
+    \end{inscription}
+}
+
+\newenvironment{rush}{ % Draco's prespective when Quirell eats a unicorn
+                       % and attacks everyone in Ch100
+    \begin{em}
+}{
+    \end{em}
+}
+
+\newenvironment{bigSign}{ % Harry's anti-snitch sign in Ch104
+    \begin{center}
+}{
+    \end{center}
+}
+%%
 \newenvironment{headlines}{%                                                                   %%
     \SomeVSpace%                                                                               %%
-	\begin{adjustwidth}{4\parindent}{\parindent}                                               %%
+	\begin{narrow}                                               %%
         \begin{Spacing}{0.95}                                                                  %%
             \begin{center}                                                                     %%
-                \renewcommand{\headline}[1]{\textsc{##1}\vfill}                                %%
-                \setlength{\parindent}{0pt}                                                    %%
-                \setlength{\parskip}{1em}                                                      %%
-}{%                                                                                            %%
+                \begin{parsepskip}
+                    \renewcommand{\headline}[1]{\textsc{##1}\vfill}                                %%
+}{%
+                \end{parsepskip}%%
             \end{center}                                                                       %%
         \end{Spacing}                                                                          %%
-    \end{adjustwidth}                                                                          %%
-    \SomeVSpace%                                                                               %%
-}                                                                                              %%
+    \end{narrow}                                                                          %%
+\SomeVSpace%                                                                          %%
+}%%
+
+\newenvironment{dedications}{ % Dedications to James, Lily and Harry in the Potter House
+                              % monument in Ch96
+    \begin{center}
+    \begin{em}
+    \parskip=\gridvskip
+}{
+    \end{em}
+    \end{center}
+}
+
+\newenvironment{friendshipOath}{
+    \begin{parsepskip}
+        \begin{em}
+}{
+        \end{em}
+    \end{parsepskip}
+}
+
+\newenvironment{quoteA}{ % Godric's "Nihil Supernum" from Ch75 end
+    \centering
+    \newcommand{\Quote}[1]{##1 \SmallVSpace}
+    \newcommand{\Origin}[1]{---##1}
+}{}
+
+\newenvironment{quoteB}{ % Peverell brothers quote from Ch96 end
+    \centering
+    \newcommand{\Quote}[1]{\emph{##1} \SmallVSpace}
+    \newcommand{\Translation}[1]{##1 \SmallVSpace}
+    \newcommand{\Origin}[2]{
+        ---##1, \\
+        ##2
+    }
+}{}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
